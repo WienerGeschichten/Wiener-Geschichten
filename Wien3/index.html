@@ -1,10 +1,11 @@
-<!doctype html>
+.<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ein Wiener Gesicht. Eine Geschichte.</title>
   <meta name="description" content="Eine fiktive Wiener Geschichte, inspiriert von einem historischen Porträt.">
+
   <style>
     :root {
       --paper: #ead9b8;
@@ -16,7 +17,9 @@
       --shadow: 0 18px 55px rgba(35, 25, 14, .24);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -150,36 +153,64 @@
     }
 
     @media (max-width: 520px) {
-      body { padding: 0; }
-      main { border-left: 0; border-right: 0; }
-      .header { padding-top: 26px; }
-      .content { padding: 20px 16px; }
-      .intro { font-size: 17px; }
+      body {
+        padding: 0;
+      }
+
+      main {
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .header {
+        padding-top: 26px;
+      }
+
+      .content {
+        padding: 20px 16px;
+      }
+
+      .intro {
+        font-size: 17px;
+      }
     }
   </style>
 </head>
+
 <body>
   <main>
     <header class="header">
-      <p class="eyebrow">Wien · Eine Stimme aus der Vergangenheit</p>
-      <h1>Ein Wiener Gesicht.</h1>
-      <p class="subtitle">Eine mögliche Geschichte, inspiriert von einem historischen Porträt.</p>
+      <p class="eyebrow">Wien · Stimmen aus der Vergangenheit</p>
+
+      <h1>Zwei Wiener Gesichter.</h1>
+
+      <p class="subtitle">
+        Eine mögliche Geschichte, inspiriert von einem historischen Porträt.
+      </p>
     </header>
 
     <section class="content">
       <figure class="portrait-wrap">
-        <img src="Wien3.jpg" alt="Historisches Porträt eines älteren Herrn aus Wien">
+        <img
+          src="Wien3.jpg"
+          alt="Historisches Porträt zweier Frauen aus Wien">
       </figure>
 
       <p class="intro">
-        Ihre wahren Namen sind in der Zeit verloren gegangen. Doch dieses Porträt lädt uns ein,
-        für einen Augenblick stehen zu bleiben – und uns vorzustellen, welches Leben hinter
-        diesem Gesicht gelegen haben könnte.
+        Ihre wahren Namen sind in der Zeit verloren gegangen. Doch dieses
+        Porträt lädt uns ein, für einen Augenblick stehen zu bleiben – und uns
+        vorzustellen, welches Leben hinter diesen beiden Gesichtern gelegen
+        haben könnte.
       </p>
 
       <section class="audio-card" aria-labelledby="audio-title">
         <h2 id="audio-title">Geschichte anhören</h2>
-        <p>Lehne dich einen Moment zurück und begleite ihn auf eine kleine Reise in das Wien vergangener Tage.</p>
+
+        <p>
+          Lehne dich einen Moment zurück und begleite die beiden auf eine
+          kleine Reise in das Wien vergangener Tage.
+        </p>
+
         <audio controls preload="metadata">
           <source src="Geschichte3.m4a" type="audio/mp4">
           Dein Browser kann diese Audiodatei leider nicht abspielen.
@@ -187,13 +218,15 @@
       </section>
 
       <p class="thanks">
-        Danke, dass du dir Zeit genommen hast, diesem Gesicht und seiner möglichen Geschichte zu begegnen.
-        Solange jemand hinschaut und zuhört, bleibt ein kleines Stück Vergangenheit lebendig.
+        Danke, dass du dir Zeit genommen hast, diesen beiden Gesichtern und
+        ihrer möglichen Geschichte zu begegnen. Solange jemand hinschaut und
+        zuhört, bleibt ein kleines Stück Vergangenheit lebendig.
       </p>
 
       <p class="note">
-        Hinweis: Die erzählte Geschichte und der verwendete Name sind frei erfunden.
-        Sie wurden von diesem historischen Porträt und der Atmosphäre des alten Wien inspiriert.
+        Hinweis: Die erzählte Geschichte und die verwendeten Namen sind frei
+        erfunden. Sie wurden von diesem historischen Porträt und der Atmosphäre
+        des alten Wien inspiriert.
       </p>
     </section>
 
