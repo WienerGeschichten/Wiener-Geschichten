@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ein Wiener Gesicht. Eine Geschichte.</title>
+  <meta name="description" content="Eine fiktive Wiener Geschichte, inspiriert von einem historischen Porträt.">
+  <style>
+    :root {
+      --paper: #ead9b8;
+      --paper-light: #f6eddc;
+      --ink: #211b16;
+      --muted: #6f6254;
+      --gold: #9a6f2f;
+      --line: rgba(33, 27, 22, .18);
+      --shadow: 0 18px 55px rgba(35, 25, 14, .24);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.5), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(55,38,20,.025) 0 1px, transparent 1px 4px),
+        linear-gradient(135deg, #c8aa78, #ead9b8 45%, #c2a06b);
+      padding: 24px 14px;
+    }
+
+    main {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      background: rgba(246, 237, 220, .96);
+      border: 1px solid rgba(74, 51, 29, .28);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding: 34px 24px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      letter-spacing: .26em;
+      font: 600 12px/1.4 Arial, sans-serif;
+      color: var(--gold);
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: .05em;
+      font-size: clamp(30px, 7vw, 52px);
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 17px;
+    }
+
+    .content {
+      padding: 28px;
+    }
+
+    .portrait-wrap {
+      max-width: 470px;
+      margin: 0 auto 26px;
+      padding: 12px;
+      background: #d6bb8d;
+      border: 1px solid rgba(71, 48, 27, .35);
+      box-shadow: 0 10px 30px rgba(45, 30, 17, .18);
+      transform: rotate(-.35deg);
+    }
+
+    .portrait-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: sepia(.12) contrast(1.03);
+    }
+
+    .intro {
+      max-width: 610px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 19px;
+      line-height: 1.72;
+    }
+
+    .audio-card {
+      max-width: 610px;
+      margin: 28px auto 0;
+      padding: 22px;
+      text-align: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.34);
+    }
+
+    .audio-card h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .audio-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .language-label {
+      margin: 20px 0 10px;
+      color: var(--ink);
+      font: 600 13px/1.4 Arial, sans-serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .language-picker {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin: 0 0 18px;
+    }
+
+    .language-button {
+      min-height: 46px;
+      padding: 10px 8px;
+      border: 1px solid rgba(74, 51, 29, .28);
+      border-radius: 4px;
+      color: var(--ink);
+      background: rgba(246, 237, 220, .82);
+      font: 600 14px/1.2 Arial, sans-serif;
+      cursor: pointer;
+      transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+    }
+
+    .language-button:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .language-button:focus-visible {
+      outline: 3px solid rgba(154, 111, 47, .32);
+      outline-offset: 2px;
+    }
+
+    .language-button[aria-pressed="true"] {
+      border-color: var(--gold);
+      color: #fffaf1;
+      background: var(--gold);
+    }
+
+    .language-status {
+      margin: 0 0 10px !important;
+      color: var(--ink) !important;
+      font-weight: 600;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .thanks {
+      max-width: 610px;
+      margin: 28px auto 0;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .note {
+      margin: 26px auto 0;
+      max-width: 610px;
+      color: var(--muted);
+      text-align: center;
+      font: 13px/1.55 Arial, sans-serif;
+    }
+
+    footer {
+      padding: 18px 24px 25px;
+      text-align: center;
+      color: var(--gold);
+      font: 600 12px/1.4 Arial, sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 520px) {
+      body { padding: 0; }
+      main { border-left: 0; border-right: 0; }
+      .header { padding-top: 26px; }
+      .content { padding: 20px 16px; }
+      .intro { font-size: 17px; }
+      .language-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="header">
+      <p class="eyebrow" data-i18n="eyebrow">Wien · Eine Stimme aus der Vergangenheit</p>
+      <h1 data-i18n="heading">Ein Wiener Gesicht.</h1>
+      <p class="subtitle" data-i18n="subtitle">Eine mögliche Geschichte, inspiriert von einem historischen Porträt.</p>
+    </header>
+
+    <section class="content">
+      <figure class="portrait-wrap">
+        <img id="portrait" src="./Wien9.png" alt="Historisches Porträt eines Mädchens aus Wien">
+      </figure>
+
+      <p class="intro" data-i18n="intro">
+        Ihr wahrer Name ist in der Zeit verloren gegangen. Doch dieses Porträt lädt uns ein,
+        für einen Augenblick stehen zu bleiben – und uns vorzustellen, welches Leben hinter
+        diesem Gesicht gelegen haben könnte.
+      </p>
+
+      <section class="audio-card" aria-labelledby="audio-title">
+        <h2 id="audio-title" data-i18n="audioTitle">Geschichte anhören</h2>
+        <p data-i18n="audioIntro">Lehne dich einen Moment zurück und begleite sie auf eine kleine Reise in das Wien vergangener Tage.</p>
+
+        <p class="language-label" id="language-label" data-i18n="languageLabel">Sprache auswählen</p>
+        <div class="language-picker" role="group" aria-labelledby="language-label">
+          <button class="language-button" type="button" data-lang="de" data-audio="./Geschichte9.mp3" aria-pressed="true">🇩🇪 Deutsch</button>
+          <button class="language-button" type="button" data-lang="en" data-audio="./Geschichte9-1.mp3" aria-pressed="false">🇬🇧 English</button>
+          <button class="language-button" type="button" data-lang="fr" data-audio="./Geschichte9-2.mp3" aria-pressed="false">🇫🇷 Français</button>
+          <button class="language-button" type="button" data-lang="es" data-audio="./Geschichte9-3.mp3" aria-pressed="false">🇪🇸 Español</button>
+          <button class="language-button" type="button" data-lang="ja" data-audio="./Geschichte9-4.mp3" aria-pressed="false">🇯🇵 日本語</button>
+          <button class="language-button" type="button" data-lang="zh-Hant" data-audio="./Geschichte9-5.mp3" aria-pressed="false">🇨🇳 中文</button>
+        </div>
+
+        <p class="language-status" id="language-status" aria-live="polite">Ausgewählt: 🇩🇪 Deutsch</p>
+        <audio id="story-player" controls preload="metadata">
+          <source id="story-source" src="./Geschichte9.mp3" type="audio/mpeg">
+          <span data-i18n="audioFallback">Dein Browser kann diese Audiodatei leider nicht abspielen.</span>
+        </audio>
+      </section>
+
+      <p class="thanks" data-i18n="thanks">
+        Danke, dass du dir Zeit genommen hast, diesem Gesicht und seiner möglichen Geschichte zu begegnen.
+        Solange jemand hinschaut und zuhört, bleibt ein kleines Stück Vergangenheit lebendig.
+      </p>
+
+      <p class="note" data-i18n="note">
+        Hinweis: Die erzählte Geschichte und der verwendete Name sind frei erfunden.
+        Sie wurden von diesem historischen Porträt und der Atmosphäre des alten Wien inspiriert.
+      </p>
+    </section>
+
+    <footer data-i18n="footer">Gestern · Heute · Für immer</footer>
+  </main>
+
+  <script>
+    const translations = {
+      de: {
+        title: 'Ein Wiener Gesicht. Eine Geschichte.',
+        description: 'Eine fiktive Wiener Geschichte, inspiriert von einem historischen Porträt.',
+        eyebrow: 'Wien · Eine Stimme aus der Vergangenheit',
+        heading: 'Ein Wiener Gesicht.',
+        subtitle: 'Eine mögliche Geschichte, inspiriert von einem historischen Porträt.',
+        portraitAlt: 'Historisches Porträt eines Mädchens aus Wien',
+        intro: 'Ihr wahrer Name ist in der Zeit verloren gegangen. Doch dieses Porträt lädt uns ein, für einen Augenblick stehen zu bleiben – und uns vorzustellen, welches Leben hinter diesem Gesicht gelegen haben könnte.',
+        audioTitle: 'Geschichte anhören',
+        audioIntro: 'Lehne dich einen Moment zurück und begleite sie auf eine kleine Reise in das Wien vergangener Tage.',
+        languageLabel: 'Sprache auswählen',
+        selected: 'Ausgewählt',
+        audioFallback: 'Dein Browser kann diese Audiodatei leider nicht abspielen.',
+        thanks: 'Danke, dass du dir Zeit genommen hast, diesem Gesicht und seiner möglichen Geschichte zu begegnen. Solange jemand hinschaut und zuhört, bleibt ein kleines Stück Vergangenheit lebendig.',
+        note: 'Hinweis: Die erzählte Geschichte und der verwendete Name sind frei erfunden. Sie wurden von diesem historischen Porträt und der Atmosphäre des alten Wien inspiriert.',
+        footer: 'Gestern · Heute · Für immer'
+      },
+      en: {
+        title: 'A Viennese Face. A Story.',
+        description: 'A fictional Viennese story inspired by a historical portrait.',
+        eyebrow: 'Vienna · A Voice from the Past',
+        heading: 'A Viennese Face.',
+        subtitle: 'A possible story inspired by a historical portrait.',
+        portraitAlt: 'Historical portrait of a girl from Vienna',
+        intro: 'Her real name has been lost to time. Yet this portrait invites us to pause for a moment—and imagine the life that may have existed behind this face.',
+        audioTitle: 'Listen to the story',
+        audioIntro: 'Take a moment to lean back and join her on a short journey into Vienna’s past.',
+        languageLabel: 'Choose a language',
+        selected: 'Selected',
+        audioFallback: 'Your browser cannot play this audio file.',
+        thanks: 'Thank you for taking the time to meet this face and her possible story. As long as someone looks and listens, a small piece of the past remains alive.',
+        note: 'Note: The story and the name used are fictional. They were inspired by this historical portrait and the atmosphere of old Vienna.',
+        footer: 'Yesterday · Today · Forever'
+      },
+      fr: {
+        title: 'Un visage viennois. Une histoire.',
+        description: 'Une histoire viennoise fictive, inspirée d’un portrait historique.',
+        eyebrow: 'Vienne · Une voix venue du passé',
+        heading: 'Un visage viennois.',
+        subtitle: 'Une histoire possible, inspirée d’un portrait historique.',
+        portraitAlt: 'Portrait historique d’une jeune fille de Vienne',
+        intro: 'Son véritable nom s’est perdu dans le temps. Pourtant, ce portrait nous invite à nous arrêter un instant et à imaginer la vie qui aurait pu se cacher derrière ce visage.',
+        audioTitle: 'Écouter l’histoire',
+        audioIntro: 'Prenez un moment pour vous installer confortablement et accompagnez-la dans un court voyage au cœur de la Vienne d’autrefois.',
+        languageLabel: 'Choisir la langue',
+        selected: 'Sélectionné',
+        audioFallback: 'Votre navigateur ne peut malheureusement pas lire ce fichier audio.',
+        thanks: 'Merci d’avoir pris le temps de rencontrer ce visage et son histoire possible. Tant que quelqu’un regarde et écoute, une petite part du passé reste vivante.',
+        note: 'Remarque : L’histoire racontée et le nom utilisé sont entièrement fictifs. Ils ont été inspirés par ce portrait historique et par l’atmosphère de la Vienne d’autrefois.',
+        footer: 'Hier · Aujourd’hui · Pour toujours'
+      },
+      es: {
+        title: 'Un rostro vienés. Una historia.',
+        description: 'Una historia vienesa ficticia inspirada en un retrato histórico.',
+        eyebrow: 'Viena · Una voz del pasado',
+        heading: 'Un rostro vienés.',
+        subtitle: 'Una posible historia inspirada en un retrato histórico.',
+        portraitAlt: 'Retrato histórico de una joven de Viena',
+        intro: 'Su verdadero nombre se perdió con el paso del tiempo. Sin embargo, este retrato nos invita a detenernos por un instante e imaginar qué vida pudo haber detrás de este rostro.',
+        audioTitle: 'Escuchar la historia',
+        audioIntro: 'Tómate un momento para relajarte y acompáñala en un breve viaje a la Viena de otros tiempos.',
+        languageLabel: 'Seleccionar idioma',
+        selected: 'Seleccionado',
+        audioFallback: 'Tu navegador no puede reproducir este archivo de audio.',
+        thanks: 'Gracias por dedicar un momento a conocer este rostro y su posible historia. Mientras alguien mire y escuche, una pequeña parte del pasado seguirá viva.',
+        note: 'Nota: La historia narrada y el nombre utilizado son ficticios. Se inspiraron en este retrato histórico y en la atmósfera de la antigua Viena.',
+        footer: 'Ayer · Hoy · Para siempre'
+      },
+      ja: {
+        title: 'ウィーンのひとつの顔。ひとつの物語。',
+        description: '歴史的な肖像写真から着想を得た、架空のウィーンの物語。',
+        eyebrow: 'ウィーン · 過去から届く声',
+        heading: 'ウィーンのひとつの顔。',
+        subtitle: '歴史的な肖像写真から着想を得た、ひとつの物語。',
+        portraitAlt: 'ウィーンの少女を写した歴史的な肖像写真',
+        intro: '彼女の本当の名前は、時の流れの中に消えてしまいました。それでもこの肖像写真は、私たちにほんの少し立ち止まり、この顔の向こうにどのような人生があったのかを想像させてくれます。',
+        audioTitle: '物語を聴く',
+        audioIntro: '少し肩の力を抜いて、昔のウィーンをめぐる短い旅に彼女と一緒に出かけてみてください。',
+        languageLabel: '言語を選択',
+        selected: '選択中',
+        audioFallback: 'お使いのブラウザーでは、この音声ファイルを再生できません。',
+        thanks: 'この顔と、彼女にまつわるかもしれない物語に耳を傾けてくださり、ありがとうございます。誰かが見つめ、耳を傾ける限り、過去の小さなかけらは生き続けます。',
+        note: '注：この物語と作中の名前はフィクションです。この歴史的な肖像写真と、古きウィーンの雰囲気から着想を得ています。',
+        footer: '昨日 · 今日 · 永遠に'
+      },
+      'zh-Hant': {
+        title: '一張維也納的面孔。一段故事。',
+        description: '一段受歷史肖像啟發的虛構維也納故事。',
+        eyebrow: '維也納 · 來自過去的聲音',
+        heading: '一張維也納的面孔。',
+        subtitle: '一段受歷史肖像啟發的可能故事。',
+        portraitAlt: '一位維也納女孩的歷史肖像',
+        intro: '她真正的名字已消失在歲月之中。然而，這張肖像邀請我們停下片刻，想像這張面孔背後可能有過怎樣的人生。',
+        audioTitle: '聆聽故事',
+        audioIntro: '請放鬆片刻，陪伴她踏上一段走進昔日維也納的短暫旅程。',
+        languageLabel: '選擇語言',
+        selected: '已選擇',
+        audioFallback: '您的瀏覽器無法播放此音訊檔案。',
+        thanks: '感謝您花時間與這張面孔及她可能的故事相遇。只要仍有人觀看與聆聽，過去的一小部分便會繼續存在。',
+        note: '說明：故事內容與所使用的姓名皆為虛構，靈感來自這張歷史肖像與昔日維也納的氛圍。',
+        footer: '昨日 · 今日 · 永遠'
+      }
+    };
+
+    const player = document.getElementById('story-player');
+    const source = document.getElementById('story-source');
+    const status = document.getElementById('language-status');
+    const portrait = document.getElementById('portrait');
+    const description = document.querySelector('meta[name="description"]');
+    const buttons = document.querySelectorAll('.language-button');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        player.pause();
+        source.src = button.dataset.audio;
+        player.load();
+
+        buttons.forEach((item) => item.setAttribute('aria-pressed', 'false'));
+        button.setAttribute('aria-pressed', 'true');
+
+        const language = translations[button.dataset.lang];
+        document.documentElement.lang = button.dataset.lang;
+        document.title = language.title;
+        description.content = language.description;
+        portrait.alt = language.portraitAlt;
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          element.textContent = language[element.dataset.i18n];
+        });
+        status.textContent = `${language.selected}: ${button.textContent.trim()}`;
+      });
+    });
+  </script>
+</body>
+</html>
