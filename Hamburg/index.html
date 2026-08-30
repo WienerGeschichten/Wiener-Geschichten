@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ein Hamburger Gesicht. Eine Geschichte.</title>
+  <meta name="description" content="Eine fiktive Hamburger Geschichte, inspiriert von einem historischen Porträt.">
+  <style>
+    :root {
+      --paper: #ead9b8;
+      --paper-light: #f6eddc;
+      --ink: #211b16;
+      --muted: #6f6254;
+      --gold: #9a6f2f;
+      --line: rgba(33, 27, 22, .18);
+      --shadow: 0 18px 55px rgba(35, 25, 14, .24);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.5), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(55,38,20,.025) 0 1px, transparent 1px 4px),
+        linear-gradient(135deg, #c8aa78, #ead9b8 45%, #c2a06b);
+      padding: 24px 14px;
+    }
+
+    main {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      background: rgba(246, 237, 220, .96);
+      border: 1px solid rgba(74, 51, 29, .28);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding: 34px 24px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      letter-spacing: .26em;
+      font: 600 12px/1.4 Arial, sans-serif;
+      color: var(--gold);
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: .05em;
+      font-size: clamp(30px, 7vw, 52px);
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 17px;
+    }
+
+    .language-picker {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 22px auto 0;
+      max-width: 610px;
+    }
+
+    .language-button {
+      appearance: none;
+      border: 1px solid rgba(74, 51, 29, .28);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--ink);
+      background: rgba(255,255,255,.38);
+      font: 600 13px/1.2 Arial, sans-serif;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .language-button:hover,
+    .language-button:focus-visible {
+      border-color: var(--gold);
+      outline: none;
+    }
+
+    .language-button[aria-pressed="true"] {
+      color: #fff;
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .content {
+      padding: 28px;
+    }
+
+    .portrait-wrap {
+      max-width: 470px;
+      margin: 0 auto 26px;
+      padding: 12px;
+      background: #d6bb8d;
+      border: 1px solid rgba(71, 48, 27, .35);
+      box-shadow: 0 10px 30px rgba(45, 30, 17, .18);
+      transform: rotate(-.35deg);
+    }
+
+    .portrait-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: sepia(.12) contrast(1.03);
+    }
+
+    .intro {
+      max-width: 610px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 19px;
+      line-height: 1.72;
+    }
+
+    .audio-card {
+      max-width: 610px;
+      margin: 28px auto 0;
+      padding: 22px;
+      text-align: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.34);
+    }
+
+    .audio-card h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .audio-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .thanks {
+      max-width: 610px;
+      margin: 28px auto 0;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .note {
+      margin: 26px auto 0;
+      max-width: 610px;
+      color: var(--muted);
+      text-align: center;
+      font: 13px/1.55 Arial, sans-serif;
+    }
+
+    footer {
+      padding: 18px 24px 25px;
+      text-align: center;
+      color: var(--gold);
+      font: 600 12px/1.4 Arial, sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 520px) {
+      body { padding: 0; }
+      main { border-left: 0; border-right: 0; }
+      .header { padding-top: 26px; }
+      .content { padding: 20px 16px; }
+      .intro { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="header">
+      <p class="eyebrow">Hamburg · Eine Stimme aus der Vergangenheit</p>
+      <h1>Ein Hamburger Gesicht.</h1>
+      <p class="subtitle">Eine mögliche Geschichte, inspiriert von einem historischen Porträt.</p>
+
+      <nav class="language-picker" aria-label="Sprache auswählen">
+        <button class="language-button" type="button" data-lang="de" aria-pressed="true">🇩🇪 Deutsch</button>
+        <button class="language-button" type="button" data-lang="en" aria-pressed="false">🇬🇧 English</button>
+        <button class="language-button" type="button" data-lang="fr" aria-pressed="false">🇫🇷 Français</button>
+        <button class="language-button" type="button" data-lang="es" aria-pressed="false">🇪🇸 Español</button>
+        <button class="language-button" type="button" data-lang="ja" aria-pressed="false">🇯🇵 日本語</button>
+        <button class="language-button" type="button" data-lang="zh" aria-pressed="false">🇨🇳 中文</button>
+      </nav>
+    </header>
+
+    <section class="content">
+      <figure class="portrait-wrap">
+        <img src="Hamburg01.png" alt="Historisches Porträt einer jungen Frau aus Hamburg">
+      </figure>
+
+      <p class="intro">
+        Ihr wahrer Name ist in der Zeit verloren gegangen. Doch dieses Porträt lädt uns ein,
+        für einen Augenblick stehen zu bleiben – und uns vorzustellen, welches Leben hinter
+        diesem Gesicht gelegen haben könnte.
+      </p>
+
+      <section class="audio-card" aria-labelledby="audio-title">
+        <h2 id="audio-title">Geschichte anhören</h2>
+        <p>Lehne dich einen Moment zurück und begleite sie auf eine kleine Reise in das Hamburg vergangener Tage.</p>
+        <audio controls preload="metadata">
+          <source src="Hamburg01 Deutsch.mp3" type="audio/mpeg">
+          <span class="audio-fallback">Dein Browser kann diese Audiodatei leider nicht abspielen.</span>
+        </audio>
+      </section>
+
+      <p class="thanks">
+        Danke, dass du dir Zeit genommen hast, diesem Gesicht und ihrer möglichen Geschichte zu begegnen.
+        Solange jemand hinschaut und zuhört, bleibt ein kleines Stück Vergangenheit lebendig.
+      </p>
+
+      <p class="note">
+        Hinweis: Die erzählte Geschichte und der verwendete Name sind frei erfunden.
+        Sie wurden von diesem historischen Porträt und der Atmosphäre des alten Hamburg inspiriert.
+      </p>
+    </section>
+
+    <footer>Gestern · Heute · Für immer</footer>
+  </main>
+
+  <script>
+    const translations = {
+      de: {
+        documentTitle: "Ein Hamburger Gesicht. Eine Geschichte.",
+        description: "Eine fiktive Hamburger Geschichte, inspiriert von einem historischen Porträt.",
+        languageLabel: "Sprache auswählen",
+        eyebrow: "Hamburg · Eine Stimme aus der Vergangenheit",
+        title: "Ein Hamburger Gesicht.",
+        subtitle: "Eine mögliche Geschichte, inspiriert von einem historischen Porträt.",
+        imageAlt: "Historisches Porträt einer jungen Frau aus Hamburg",
+        intro: "Ihr wahrer Name ist in der Zeit verloren gegangen. Doch dieses Porträt lädt uns ein, für einen Augenblick stehen zu bleiben – und uns vorzustellen, welches Leben hinter diesem Gesicht gelegen haben könnte.",
+        audioTitle: "Geschichte anhören",
+        audioText: "Lehne dich einen Moment zurück und begleite sie auf eine kleine Reise in das Hamburg vergangener Tage.",
+        audioFallback: "Dein Browser kann diese Audiodatei leider nicht abspielen.",
+        thanks: "Danke, dass du dir Zeit genommen hast, diesem Gesicht und ihrer möglichen Geschichte zu begegnen. Solange jemand hinschaut und zuhört, bleibt ein kleines Stück Vergangenheit lebendig.",
+        note: "Hinweis: Die erzählte Geschichte und der verwendete Name sind frei erfunden. Sie wurden von diesem historischen Porträt und der Atmosphäre des alten Hamburg inspiriert.",
+        footer: "Gestern · Heute · Für immer",
+        audio: "Hamburg01 Deutsch.mp3",
+        audioType: "audio/mpeg"
+      },
+      en: {
+        documentTitle: "A Hamburg Face. A Story.",
+        description: "A fictional Hamburg story inspired by a historical portrait.",
+        languageLabel: "Choose a language",
+        eyebrow: "Hamburg · A Voice from the Past",
+        title: "A Hamburg Face.",
+        subtitle: "A possible story inspired by a historical portrait.",
+        imageAlt: "Historical portrait of a young woman from Hamburg",
+        intro: "Her real name has been lost to time. Yet this portrait invites us to pause for a moment – and imagine the life that may once have existed behind this face.",
+        audioTitle: "Listen to the story",
+        audioText: "Sit back for a moment and join her on a short journey into the Hamburg of days gone by.",
+        audioFallback: "Unfortunately, your browser cannot play this audio file.",
+        thanks: "Thank you for taking the time to encounter this face and her possible story. As long as someone looks and listens, a small piece of the past remains alive.",
+        note: "Please note: The story and the name used are fictional. They were inspired by this historical portrait and the atmosphere of old Hamburg.",
+        footer: "Yesterday · Today · Forever",
+        audio: "Hamburg01 Englisch.mp3",
+        audioType: "audio/mpeg"
+      },
+      fr: {
+        documentTitle: "Un visage hambourgeois. Une histoire.",
+        description: "Une histoire hambourgeoise fictive inspirée d’un portrait historique.",
+        languageLabel: "Choisir la langue",
+        eyebrow: "Hambourg · Une voix venue du passé",
+        title: "Un visage hambourgeois.",
+        subtitle: "Une histoire possible, inspirée d’un portrait historique.",
+        imageAlt: "Portrait historique d’une jeune femme de Hambourg",
+        intro: "Son véritable nom s’est perdu au fil du temps. Pourtant, ce portrait nous invite à nous arrêter un instant – et à imaginer la vie qui a pu se cacher derrière ce visage.",
+        audioTitle: "Écouter l’histoire",
+        audioText: "Prenez un instant pour vous détendre et accompagnez-la dans un court voyage au cœur de la Hambourg d’autrefois.",
+        audioFallback: "Votre navigateur ne peut malheureusement pas lire ce fichier audio.",
+        thanks: "Merci d’avoir pris le temps de rencontrer ce visage et son histoire possible. Tant que quelqu’un regarde et écoute, une petite part du passé reste vivante.",
+        note: "Remarque : L’histoire racontée et le nom utilisé sont fictifs. Ils ont été inspirés par ce portrait historique et par l’atmosphère de la Hambourg d’autrefois.",
+        footer: "Hier · Aujourd’hui · Pour toujours",
+        audio: "Hamburg01 Französisch.mp3",
+        audioType: "audio/mpeg"
+      },
+      es: {
+        documentTitle: "Un rostro hamburgués. Una historia.",
+        description: "Una historia hamburguesa ficticia inspirada en un retrato histórico.",
+        languageLabel: "Elegir idioma",
+        eyebrow: "Hamburgo · Una voz del pasado",
+        title: "Un rostro hamburgués.",
+        subtitle: "Una posible historia inspirada en un retrato histórico.",
+        imageAlt: "Retrato histórico de una joven de Hamburgo",
+        intro: "Su verdadero nombre se ha perdido en el tiempo. Sin embargo, este retrato nos invita a detenernos un instante y a imaginar qué vida pudo haber existido detrás de este rostro.",
+        audioTitle: "Escuchar la historia",
+        audioText: "Relájate por un momento y acompáñala en un breve viaje por la Hamburgo de tiempos pasados.",
+        audioFallback: "Tu navegador no puede reproducir este archivo de audio.",
+        thanks: "Gracias por tomarte el tiempo de conocer este rostro y su posible historia. Mientras haya alguien que mire y escuche, una pequeña parte del pasado seguirá viva.",
+        note: "Nota: La historia narrada y el nombre utilizado son ficticios. Se inspiraron en este retrato histórico y en la atmósfera de la antiguo Hamburgo.",
+        footer: "Ayer · Hoy · Para siempre",
+        audio: "Hamburg01 Spanisch.mp3",
+        audioType: "audio/mpeg"
+      },
+      ja: {
+        documentTitle: "ハンブルクのひとつの顔、ひとつの物語。",
+        description: "歴史的な肖像写真から着想を得た、架空のハンブルクの物語です。",
+        languageLabel: "言語を選択",
+        eyebrow: "ハンブルク · 過去から届く声",
+        title: "ハンブルクのひとつの顔。",
+        subtitle: "一枚の歴史的な肖像写真から生まれた、ひとつの物語。",
+        imageAlt: "ハンブルクの若い女性の歴史的な肖像写真",
+        intro: "彼女の本当の名前は、時の流れの中で失われてしまいました。それでもこの肖像写真は、私たちにしばし足を止め、この顔の向こうにどのような人生があったのかを想像させてくれます。",
+        audioTitle: "物語を聴く",
+        audioText: "少しの間くつろいで、遠い昔のハンブルクをめぐる小さな旅に彼女と一緒に出かけてみませんか。",
+        audioFallback: "お使いのブラウザでは、この音声ファイルを再生できません。",
+        thanks: "この顔と、彼女の物語に心を寄せてくださり、ありがとうございます。誰かが見つめ、耳を傾けるかぎり、過去の小さなかけらは生き続けます。",
+        note: "ご案内：この物語と作中の名前はフィクションです。この歴史的な肖像写真と、古きハンブルクの雰囲気から着想を得ています。",
+        footer: "昨日 · 今日 · いつまでも",
+        audio: "Hamburg01 Japanisch.mp3",
+        audioType: "audio/mpeg"
+      },
+      zh: {
+        documentTitle: "一張漢堡的面孔，一段故事。",
+        description: "一段受歷史肖像啟發而創作的漢堡虛構故事。",
+        languageLabel: "選擇語言",
+        eyebrow: "漢堡 · 來自過去的聲音",
+        title: "一張漢堡的面孔。",
+        subtitle: "一段受歷史肖像啟發而想像的故事。",
+        imageAlt: "一位漢堡年輕女子的歷史肖像",
+        intro: "她的真實姓名已消失在歲月之中。然而，這幅肖像邀請我們停下片刻，想像這張面孔背後或許曾有過怎樣的人生。",
+        audioTitle: "聆聽故事",
+        audioText: "請放鬆片刻，陪伴她踏上一段短暫的旅程，走進昔日的漢堡。",
+        audioFallback: "很抱歉，您的瀏覽器無法播放此音訊檔案。",
+        thanks: "感謝您願意花時間凝視這張面孔，聆聽她可能的故事。只要仍有人觀看、有人傾聽，過去的一小部分便會繼續存活。",
+        note: "說明：故事內容與其中使用的姓名皆為虛構，靈感來自這幅歷史肖像與昔日漢堡的氛圍。",
+        footer: "昨日 · 今日 · 永遠",
+        audio: "Hamburg01 Chinesisch.mp3",
+        audioType: "audio/mpeg"
+      }
+    };
+
+    const elements = {
+      description: document.querySelector('meta[name="description"]'),
+      languagePicker: document.querySelector(".language-picker"),
+      eyebrow: document.querySelector(".eyebrow"),
+      title: document.querySelector("h1"),
+      subtitle: document.querySelector(".subtitle"),
+      image: document.querySelector(".portrait-wrap img"),
+      intro: document.querySelector(".intro"),
+      audioTitle: document.querySelector(".audio-card h2"),
+      audioText: document.querySelector(".audio-card p"),
+      audio: document.querySelector("audio"),
+      audioSource: document.querySelector("audio source"),
+      audioFallback: document.querySelector(".audio-fallback"),
+      thanks: document.querySelector(".thanks"),
+      note: document.querySelector(".note"),
+      footer: document.querySelector("footer")
+    };
+
+    function setLanguage(language) {
+      const text = translations[language] || translations.de;
+      const wasPlaying = !elements.audio.paused;
+
+      document.documentElement.lang = language === "zh" ? "zh-Hant" : language;
+      document.title = text.documentTitle;
+      elements.description.content = text.description;
+      elements.languagePicker.setAttribute("aria-label", text.languageLabel);
+      elements.eyebrow.textContent = text.eyebrow;
+      elements.title.textContent = text.title;
+      elements.subtitle.textContent = text.subtitle;
+      elements.image.alt = text.imageAlt;
+      elements.intro.textContent = text.intro;
+      elements.audioTitle.textContent = text.audioTitle;
+      elements.audioText.textContent = text.audioText;
+      elements.audioSource.src = text.audio;
+      elements.audioSource.type = text.audioType;
+      elements.audioFallback.textContent = text.audioFallback;
+      elements.audio.load();
+      elements.thanks.textContent = text.thanks;
+      elements.note.textContent = text.note;
+      elements.footer.textContent = text.footer;
+
+      document.querySelectorAll(".language-button").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+      });
+
+      if (wasPlaying) {
+        elements.audio.play().catch(() => {});
+      }
+    }
+
+    document.querySelectorAll(".language-button").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage("de");
+  </script>
+</body>
+</html>
