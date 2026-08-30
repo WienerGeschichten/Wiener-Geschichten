@@ -77,6 +77,9 @@
     }
 
     .language-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       appearance: none;
       border: 1px solid rgba(74, 51, 29, .28);
       border-radius: 999px;
@@ -86,6 +89,14 @@
       font: 600 13px/1.2 Arial, sans-serif;
       cursor: pointer;
       transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .flag {
+      width: 22px;
+      height: 15px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(33, 27, 22, .22);
+      box-shadow: 0 1px 2px rgba(33, 27, 22, .12);
     }
 
     .language-button:hover,
@@ -199,12 +210,12 @@
       <p class="subtitle">Eine mögliche Geschichte, inspiriert von einem historischen Porträt.</p>
 
       <nav class="language-picker" aria-label="Sprache auswählen">
-        <button class="language-button" type="button" data-lang="de" aria-pressed="true">🇩🇪 Deutsch</button>
-        <button class="language-button" type="button" data-lang="en" aria-pressed="false">🇬🇧 English</button>
-        <button class="language-button" type="button" data-lang="fr" aria-pressed="false">🇫🇷 Français</button>
-        <button class="language-button" type="button" data-lang="es" aria-pressed="false">🇪🇸 Español</button>
-        <button class="language-button" type="button" data-lang="ja" aria-pressed="false">🇯🇵 日本語</button>
-        <button class="language-button" type="button" data-lang="zh" aria-pressed="false">🇨🇳 中文</button>
+        <button class="language-button" type="button" data-lang="de" aria-pressed="true"><svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><path fill="#000" d="M0 0h3v.667H0z"/><path fill="#d00" d="M0 .667h3v.666H0z"/><path fill="#ffce00" d="M0 1.333h3V2H0z"/></svg>Deutsch</button>
+        <button class="language-button" type="button" data-lang="en" aria-pressed="false"><svg class="flag" viewBox="0 0 60 30" aria-hidden="true"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="m0 0 60 30M60 0 0 30"/><path stroke="#c8102e" stroke-width="2" d="m0 0 60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#c8102e" stroke-width="6" d="M30 0v30M0 15h60"/></svg>English</button>
+        <button class="language-button" type="button" data-lang="fr" aria-pressed="false"><svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><path fill="#0055a4" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#ef4135" d="M2 0h1v2H2z"/></svg>Français</button>
+        <button class="language-button" type="button" data-lang="es" aria-pressed="false"><svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><path fill="#aa151b" d="M0 0h3v2H0z"/><path fill="#f1bf00" d="M0 .5h3v1H0z"/></svg>Español</button>
+        <button class="language-button" type="button" data-lang="ja" aria-pressed="false"><svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><path fill="#fff" d="M0 0h3v2H0z"/><circle cx="1.5" cy="1" r=".6" fill="#bc002d"/></svg>日本語</button>
+        <button class="language-button" type="button" data-lang="zh" aria-pressed="false"><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><path fill="#de2910" d="M0 0h30v20H0z"/><path fill="#ffde00" d="m5 2 1 3h3L6.5 7 7.5 10 5 8 2.5 10l1-3L1 5h3z"/></svg>中文</button>
       </nav>
     </header>
 
@@ -374,8 +385,8 @@
 
     function setLanguage(language) {
       const text = translations[language] || translations.de;
-      const wasPlaying = !elements.audio.paused;
 
+      elements.audio.pause();
       document.documentElement.lang = language === "zh" ? "zh-Hant" : language;
       document.title = text.documentTitle;
       elements.description.content = text.description;
@@ -398,10 +409,6 @@
       document.querySelectorAll(".language-button").forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.lang === language));
       });
-
-      if (wasPlaying) {
-        elements.audio.play().catch(() => {});
-      }
     }
 
     document.querySelectorAll(".language-button").forEach((button) => {
